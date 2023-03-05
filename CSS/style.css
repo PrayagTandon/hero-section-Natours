@@ -1,0 +1,234 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; /* So that :- 1 rem = 10px */
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  color: #777;
+  padding: 3rem;
+}
+
+.header {
+  height: 95vh;
+  font-size: 1.8rem;
+
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 111, 0.8),
+      rgba(40, 180, 133, 0.8)
+    ),
+    url(/Natours-project/Natours-part-1/img/hero.jpg);
+
+  background-size: cover;
+  background-position: top;
+
+  /* CLIP-PATH CSS property to clip the bottom right portion of the image 
+      - Starts from top-left and then move in the clockwise direction.
+      - Here I am making use of the polygon value to specify the shape.
+  */
+
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  position: relative;
+}
+
+.logo-box {
+  position: absolute;
+  top: 5.5%;
+  left: 3.7%;
+}
+
+.logo {
+  height: 3.5rem;
+  cursor: pointer;
+}
+
+/* - When we specify the top - 50% and left - 50%. We see  that its not exactly 50% but more than that if we compare from the center of the element. This is because it's been calculated from the left edge and the top edge of an element. 
+ - To overcome this we can make use of the transform property. 
+ */
+
+.text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  /* background-color: darkmagenta; */
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.heading-primary {
+  color: #fff;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 6rem;
+
+  backface-visibility: hidden;
+
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.heading-primary-main {
+  display: block;
+  font-size: 6rem;
+  letter-spacing: 3.5rem;
+  font-weight: 400;
+  margin-bottom: 1.4rem;
+
+  /* Specifying the animation using individual properties:
+
+  animation-name: moveInLeft;
+  animation-duration: 5s;
+  animation-timing-function: ease-out;
+  animation-delay: 3s; 
+  */
+
+  animation: moveInLeft 1s ease-out;
+}
+
+.heading-primary-sub {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1.75rem;
+
+  animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-150px);
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  80% {
+    opacity: 0.85;
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(150px);
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  80% {
+    opacity: 0.85;
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(45px);
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn:link,
+.btn:visited {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  text-decoration: none;
+  border: none;
+  padding: 2rem 4rem;
+  border-radius: 10rem;
+
+  position: relative;
+
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+/* Specifying the content is important. The content property can take any value */
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  transition: all 0.4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+/* For the fading effect we style he opacity property */
+.btn:hover::after {
+  /* background-color: crimson; */
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  /*  - But due to delay the button is visible at the start. To overcome that we use the animation-fill-mode property.
+   - Backwards specify takes the elemnet to the animation starting position before the animation kicks in
+   - Forwards puts the element in the final position after the animation is done. */
+  animation: moveInBottom 0.3s ease-out 0.75s;
+  animation-fill-mode: backwards;
+}
