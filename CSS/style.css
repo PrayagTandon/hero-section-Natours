@@ -33,7 +33,7 @@ body {
       rgba(126, 213, 111, 0.8),
       rgba(40, 180, 133, 0.8)
     ),
-    url(/Natours-project/Natours-part-1/img/hero.jpg);
+    url(/img/hero.jpg);
 
   background-size: cover;
   background-position: top;
